@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stoichiometric Calculations - Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("static/image.png");  /* Updated file path */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(230, 241, 246, 0.8);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        a {
+            display: inline-block;
+            background-color: #4E8C9A;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #407d8e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stoichiometric Calculations - Results</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Compound to be Weighed</th>
+                <th>Amount (grams)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element, compound, amount in results %}
+            <tr>
+                <td>{{ element }}</td>
+                <td>{{ compound }}</td>
+                <td>{{ amount|float('%.5f') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>EDTA Amount: {{ EDTA|float('%.5f') }} grams</p>
+    <p>CA Amount: {{ CA|float('%.5f') }} grams</p>
+
+    <a href="/">Return to Previous Page</a>
+</body>
+</html>

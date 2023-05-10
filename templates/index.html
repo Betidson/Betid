@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sol-gel Synthesis Grams Calculator</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-image: url("static/image.png");  /* Updated file path */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgba(230, 241, 246, 0.4);
+        color: white;  /* Add this line to set the font color to white */
+
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #000;
+            font-size: 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #000;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #elements-container {
+            margin-bottom: 20px;
+        }
+
+        .element-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .element-row input[type="text"],
+        .element-row input[type="number"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .element-row button {
+            border: none;
+            background-color: #4E8C9A;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+
+        }
+
+        .element-row button:hover {
+            background-color: #2C6F7A;
+        }
+
+        input[type="submit"] {
+            background-color: #4E8C9A;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2C6F7A;
+        }
+        .instruction-text {
+            margin-bottom: 1em;
+        }
+        .instruction-container {
+            background-color: rgba(78, 140, 154, 0.5);
+            padding: 10px;
+            border-radius: 4px;
+            margin: 0 auto;
+            width: fit-content;
+            text-align:center;
+        }
+
+        .instruction-text {
+            color: black;
+            font-size: 22px;
+            line-height: 1.5;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .special-instruction-text {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+
+     <h1>Sol-gel Synthesis Grams Calculator</h1>
+
+    <div class="instruction-container">
+        <p class="instruction-text" >Sol-gel synthesis plays a vital role in the production of solid-state perovskite oxide materials for various energy applications. This web application allows you to estimate the required weight in grams for your laboratory experiments, specifically for the stirring, heating, and subsequent calcination process. Please note that the elements in our database are limited to nitrates.</p>
+    </div>
+
+     <p></p>
+
+    <form action="/calculate" method="post">
+        <label for="mc">Compound Molar Concentration:</label>
+        <br>
+        <input type="text" name="mc" id="mc" style="font-size: 18px;" required>
+
+        <p class="special-instruction-text">
+        <small>Enter the desired ratio of CA to EDTA. For example, if you want a 2:1 ratio, enter "2".</small>
+        </p>
+
+        <label for="ratio_edta_ca">CA:EDTA Ratio:</label>
+        <input type="text" name="ratio_ca_edta" id="ratio_ca_edta" style="font-size: 18px;" placeholder="Enter the ratio" required>
+
+        <label for="mi">Number of Metal Ions:</label>
+        <input type="number" name="mi" id="mi" style="font-size: 18px;" required>
+
+        <div id="elements-container">
+            <label>Elements:</label>
+            <div class="element-row">
+                <input type="text" name="symbol_1" placeholder="Element Symbol" style="font-size: 18px;" required>
+                <input type="text" name="mf_1" placeholder="Molar Fraction" style="font-size: 18px;" required>
+                <button type="button" onclick="addElement()" style="background-color: #4E8C9A; color: white; font-size: 16px;">Add Element</button>
+            </div>
+       </div>
+
+        <input type="submit" value="Calculate" style="background-color: #4E8C9A; color: white; font-size: 18px;">
+
+    </form>
+
+        <footer>
+            <p>&copy; 2023 Copyright - All Rights Reserved Betidson, Inc. We would like to hear from you. E-mail us at <a href="mailto:betidson@outlook.com">betidson@outlook.com</a>.</p>
+        </footer>
+
+
+     <script>
+    let elementCount = 1;
+
+        function addElement() {
+        elementCount++;
+
+        let container = document.getElementById('elements-container');
+        let newRow = document.createElement('div');
+        newRow.classList.add('element-row');
+
+        let symbolInput = document.createElement('input');
+        symbolInput.type = 'text';
+        symbolInput.name = `symbol_${elementCount}`;
+        symbolInput.placeholder = 'Element Symbol';
+        symbolInput.style.fontSize = '18px';
+        symbolInput.required = true;
+
+        let fractionInput = document.createElement('input');
+        fractionInput.type = 'text';
+        fractionInput.name = `mf_${elementCount}`;
+        fractionInput.placeholder = 'Molar Fraction';
+        fractionInput.style.fontSize = '18px';
+        fractionInput.required = true;
+
+        let addButton = document.createElement('button');
+        addButton.type = 'button';
+        addButton.innerText = 'Add Element';
+        addButton.onclick = addElement;
+        addButton.style.backgroundColor = '#4E8C9A';
+        addButton.style.color = 'white';
+        addButton.style.fontSize = '16px';
+
+        newRow.appendChild(symbolInput);
+        newRow.appendChild(fractionInput);
+        newRow.appendChild(addButton);
+        container.appendChild(newRow);
+    }
+</script>
+</body>
+</html>
