@@ -10,7 +10,7 @@ app = Flask(__name__, static_url_path='/static')
 element_data = {}
 compounds = []
 
-with open('molecular_weights.csv') as f:
+with open('molecular_weights.csv','r', encoding='utf-8') as f:
     reader = csv.reader(f)
     next(reader)  # Skip header row
     for row in reader:
