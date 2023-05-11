@@ -157,7 +157,7 @@
      <script>
     let elementCount = 1;
 
-        function addElement() {
+    function addElement() {
         elementCount++;
 
         let container = document.getElementById('elements-container');
@@ -178,19 +178,23 @@
         fractionInput.style.fontSize = '18px';
         fractionInput.required = true;
 
-        let addButton = document.createElement('button');
-        addButton.type = 'button';
-        addButton.innerText = 'Add Element';
-        addButton.onclick = addElement;
-        addButton.style.backgroundColor = '#4E8C9A';
-        addButton.style.color = 'white';
-        addButton.style.fontSize = '16px';
+        let deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.innerText = 'Delete';
+        deleteButton.onclick = deleteElement;
+        deleteButton.classList.add('delete-element');
 
         newRow.appendChild(symbolInput);
         newRow.appendChild(fractionInput);
-        newRow.appendChild(addButton);
+        newRow.appendChild(deleteButton);
         container.appendChild(newRow);
     }
+
+    function deleteElement() {
+        let elementRow = this.parentNode;
+        elementRow.parentNode.removeChild(elementRow);
+    }
 </script>
+
 </body>
 </html>
